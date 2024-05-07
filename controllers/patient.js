@@ -38,7 +38,7 @@ const findById = asyncWrapper(async (req,res,next) =>{
     if(!foundPatient){
         return next(new NotFoundError('Patient not found'));
     }
-    return res.status(200).json(foundHospital);
+    return res.status(200).json({foundPatient});
 });
 const  deletePatient = asyncWrapper(async (req,res,next) => {
     const patientId = req.params.id;

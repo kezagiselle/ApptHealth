@@ -41,28 +41,14 @@ const findById = asyncWrapper(async (req,res,next) =>{
     }
     return res.status(200).json(foundDoctor);
 });
-const getAvailableHours = asyncWrapper(async(req,re,next) =>{
+const getAvailableHours = asyncWrapper(async(req,res,next) =>{
     const doctorId = req.params.id;
     const foundDoctor = await doctorModel.findById(doctorId);
     if(!foundDoctor){
         return next(new NotFoundError('Doctor not Available'));
     }
-    const availableHours = foundDoctor.availableHours;
-    res.status(200).json({availableHours});
-});
-const getAvailableDays = asyncWrapper(async(req,res,next) =>{
-    const doctorId = req.params.id;
-    const foundDoctor = await doctorModel.findById(doctorId);
-    if(!foundDoctor){
-        return next(new NotFoundError('Doctor not Available'));
-    }
-    const availableHours = doctor.availableHours;
-    const availableDays = new Set();
-
-    availableHours.forEach((hour) =>{
-        availableDays.add(hour.dayOfWeek);
-    });
-    return Array.from(availableDays);
+    const availability = foundDoctor.availability;
+    res.status(200).json({availability});
 });
 
 const  deleteDoctor = asyncWrapper(async (req,res,next) => {
@@ -80,7 +66,6 @@ const doctorControllers = {
     updateDoctors,
     findById,
     getAvailableHours,
-    getAvailableDays,
     deleteDoctor
 }
 export default doctorControllers;

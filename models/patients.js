@@ -21,45 +21,34 @@ const patientSchema = new mongoose.Schema({
         required: true,
         enum: ['Male', 'Female', 'Other']
     },
-    contact: {
-        phone: {
-            type: String,
-            required: true,
+    phone: {
+      type: String,
+      required: true,
         },
-        address: {
-            type: String,
-            required: true,
+    address: {
+      type: String,
+       required: true,
         },
-        insurance: {
-            provider: {
-                type: String,
-                required: true
-            }
-             },
-             medicalHistory: {
-                type: String,
-                required: true
+    insurance: {
+        type: String,
+        required: true
             },
-            medications: [{
-                name: {
-                    type: String
+    medicalHistory: {
+        type: String,
+        required: true
+            },
+    medications:{
+        type: String,
+        required: true
+            },
+    appointments: [{
+        date: {
+        type: Date
                 },
-                dosage: {
-                    type: String
-                },
-                frequency: {
-                    type: String
-                }
-            }],
-            appointments: [{
-                date: {
-                    type: Date
-                },
-                description: {
-                    type: String
+        description: {
+         type: String
                 }
             }]        
-      }
-    }); 
+        });
 const patientModel = mongoose.model('patient',patientSchema);
 export default patientModel;

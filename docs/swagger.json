@@ -1,0 +1,1024 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "ApptHealth API",
+        "description": "API documentation for hospital appointments operations",
+        "version": "1.0.0"
+    },
+    "host": "localhost:5000",
+    "basePath": "",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/SignUp": {
+            "post": {
+                "summary": "Create an account",
+                "description": "To make an appointment first sign up",
+                "tags": [
+                    "Authentication"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "signUp object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": " user created"
+                    }
+                }
+            }
+        },
+        "/SignIn": {
+            "post": {
+                "summary": "Login into your account",
+                "description": "To make an appointment first login",
+                "tags": [
+                    "Authentication"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "signIn object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": " user logged in"
+                    }
+                }
+            }
+        },
+        "/verify": {
+            "post": {
+                "summary": "verify your otp",
+                "description": "verify your account",
+                "tags": [
+                    "Authentication"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "verify object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Account verified"
+                    }
+                }
+            }
+        },
+        "/forgotPassword": {
+            "post": {
+                "summary": "incase you forgot your password",
+                "description": "if you forgot your password",
+                "tags": [
+                    "Authentication"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "forgotPassword object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Account click on forgotPassword"
+                    }
+                }
+            }
+        },
+        "/resetPassword": {
+            "post": {
+                "summary": "reset your password",
+                "description": "set another password incase you forgot your password",
+                "tags": [
+                    "Authentication"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "verify object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Account reset"
+                    }
+                }
+            }
+        },
+        "/deleteUser/{id}": {
+            "delete": {
+                "summary": "Delete a user by ID",
+                "description": "Delete a user by ID",
+                "tags": [
+                    "Authentication"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "user deleted"
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            }
+        },
+        "/createBooking": {
+            "post": {
+                "summary": "Create a new booking",
+                "description": "Create a booking for your appointment",
+                "tags": [
+                    "Booking"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "Booking object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": " Booking created"
+                    }
+                }
+            }
+        },
+        "/listBooking": {
+            "get": {
+                "summary": "Find all bookings",
+                "description": "Find all bookings",
+                "tags": [
+                    "Booking"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieved"
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                }
+            }
+        },
+        "/findByIdBooking/{id}": {
+            "get": {
+                "summary": "get a booking by ID",
+                "description": "get a single booking by ID",
+                "tags": [
+                    "Booking"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the booking to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "single booking got it!"
+                    },
+                    "404": {
+                        "description": "booking not found"
+                    }
+                }
+            }
+        },
+        "/getPosition/{id}": {
+            "get": {
+                "summary": "get the single position of the booking",
+                "description": "find the position you booked in",
+                "tags": [
+                    "Booking"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the booking to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Booking position found"
+                    },
+                    "404": {
+                        "description": "Position not found"
+                    }
+                }
+            }
+        },
+        "/updateBooking/{id}": {
+            "put": {
+                "summary": "update your bookings",
+                "description": "updating the bookings",
+                "tags": [
+                    "Booking"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the booking to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "Updated booking object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieved"
+                    },
+                    "404": {
+                        "description": "booking not found"
+                    }
+                }
+            }
+        },
+        "/deleteBooking/{id}": {
+            "delete": {
+                "summary": "Delete a booking by ID",
+                "description": "Delete a booking by ID",
+                "tags": [
+                    "Booking"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the booking to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Booking deleted"
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                }
+            }
+        },
+        "/addDoctor": {
+            "post": {
+                "summary": "Create a new doctor",
+                "description": "Create a doctor you want",
+                "tags": [
+                    "Doctors"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/doctor"
+                        },
+                        "required": true,
+                        "description": "Doctor object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": " Doctor created"
+                    }
+                }
+            }
+        },
+        "/listDoctors": {
+            "get": {
+                "summary": "Find all doctors",
+                "description": "Find all doctors",
+                "tags": [
+                    "Doctors"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieved"
+                    },
+                    "404": {
+                        "description": "Doctors not found"
+                    }
+                }
+            }
+        },
+        "/findByIdDoctors/{id}": {
+            "get": {
+                "summary": "get a doctor by ID",
+                "description": "get a single doctor by ID",
+                "tags": [
+                    "Doctors"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the doctor to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "single doctor got it!"
+                    },
+                    "404": {
+                        "description": "doctor not found"
+                    }
+                }
+            }
+        },
+        "/availableHours/{id}": {
+            "get": {
+                "summary": "get the availability of the doctor by ID",
+                "description": "get a single doctor by ID",
+                "tags": [
+                    "Doctors"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the doctor to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Got the information!"
+                    },
+                    "404": {
+                        "description": "doctor not found"
+                    }
+                }
+            }
+        },
+        "/updateDoctors/{id}": {
+            "put": {
+                "summary": "update Doctors",
+                "description": "updating the doctors",
+                "tags": [
+                    "Doctors"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the doctor to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "Updated doctor object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieved"
+                    },
+                    "404": {
+                        "description": "doctor not found"
+                    }
+                }
+            }
+        },
+        "/deleteDoctors/{id}": {
+            "delete": {
+                "summary": "Delete a doctor by ID",
+                "description": "Delete a doctor by ID",
+                "tags": [
+                    "Doctors"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the doctor to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Doctor deleted"
+                    },
+                    "404": {
+                        "description": "Doctor not found"
+                    }
+                }
+            }
+        },
+        "/addHospitals": {
+            "post": {
+                "summary": "Create a new Hospital",
+                "description": "Create a hospital you want",
+                "tags": [
+                    "Hospitals"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "Hospital object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": " Hospital created"
+                    }
+                }
+            }
+        },
+        "/listHospitals": {
+            "get": {
+                "summary": "Find all Hospitals",
+                "description": "Find all hospitals on the list",
+                "tags": [
+                    "Hospitals"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieved"
+                    },
+                    "404": {
+                        "description": "Hospital not found"
+                    }
+                }
+            }
+        },
+        "/findByIdHospitals/{id}": {
+            "get": {
+                "summary": "get a hospital by ID",
+                "description": "get a single hospital by ID",
+                "tags": [
+                    "Hospitals"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the hospital to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "single hospital got it!"
+                    },
+                    "404": {
+                        "description": "Hospital not found"
+                    }
+                }
+            }
+        },
+        "/findByIdLocation/{location}": {
+            "get": {
+                "summary": "get a hospital by its location",
+                "description": "get a single hospital by its location",
+                "tags": [
+                    "Hospitals"
+                ],
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "description": "location of the hospital to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Find the hospital of the location  you want!"
+                    },
+                    "404": {
+                        "description": "Hospital not found"
+                    }
+                }
+            }
+        },
+        "/updateHospitals/{id}": {
+            "put": {
+                "summary": "update Hospitals",
+                "description": "updating the hospitals",
+                "tags": [
+                    "Hospitals"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the Hospital to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "Updated hospital object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieved"
+                    },
+                    "404": {
+                        "description": "Hospital not found"
+                    }
+                }
+            }
+        },
+        "/deleteHospitals/{id}": {
+            "delete": {
+                "summary": "Delete a hospital by ID",
+                "description": "Delete a hospital you want by ID",
+                "tags": [
+                    "Hospitals"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the hospital to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Hospital deleted"
+                    },
+                    "404": {
+                        "description": "Hospital not found"
+                    }
+                }
+            }
+        },
+        "/addPatient": {
+            "post": {
+                "summary": "Create a new Patient",
+                "description": "Create a patient you want",
+                "tags": [
+                    "Patients"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "Patient object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": " Patient created"
+                    }
+                }
+            }
+        },
+        "/listPatients": {
+            "get": {
+                "summary": "Find all Patients",
+                "description": "Find all patients on the list",
+                "tags": [
+                    "Patients"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieved"
+                    },
+                    "404": {
+                        "description": "Patient not found"
+                    }
+                }
+            }
+        },
+        "/findByIdPatient/{id}": {
+            "get": {
+                "summary": "get a patient by ID",
+                "description": "get a single patient by ID",
+                "tags": [
+                    "Patients"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the patient to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "single patient got it!"
+                    },
+                    "404": {
+                        "description": "patient not found"
+                    }
+                }
+            }
+        },
+        "/updatePatients/{id}": {
+            "put": {
+                "summary": "update Patient",
+                "description": "updating the Patient",
+                "tags": [
+                    "Patients"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the Patient to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions"
+                        },
+                        "required": true,
+                        "description": "Updated patient object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieved"
+                    },
+                    "404": {
+                        "description": "Patient not found"
+                    }
+                }
+            }
+        },
+        "/deletePatients/{id}": {
+            "delete": {
+                "summary": "Delete a patient by ID",
+                "description": "Delete a patient you want by ID",
+                "tags": [
+                    "Patients"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the patient to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Patient deleted"
+                    },
+                    "404": {
+                        "description": "Patient not found"
+                    }
+                }
+            }
+        }
+    },
+      "definitions": {
+        "Users": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "String",
+                    "required": true,
+                    "minLength": 3
+                },
+                "lastName": {
+                    "type": "String",
+                    "required": "true",
+                    "minLength": 3
+                },
+                "email": {
+                    "type": "String",
+                    "required": "true",
+                    "unique": "true"
+                },
+                "password": {
+                    "type": "String",
+                    "required": "true"
+                },
+                "otp": {
+                    "type": "Number",
+                    "required": "true"
+                },
+                "otpExpires": {
+                    "type": "Date",
+                    "required": "false"
+                },
+                "verified": {
+                    "type": "Boolean",
+                    "required": "true",
+                    "default": "false"
+                }
+            },
+            "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "password",
+                "otp",
+                "otpExpires",
+                "verified"
+            ]
+        },
+        "Patients": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "String",
+                    "required": "true",
+                    "minlength": 3
+                },
+                "lastName": {
+                    "type": "String",
+                    "required": "true",
+                    "minlength": 3
+                },
+                "nationalId": {
+                    "type": "String",
+                    "required": "true",
+                    "minlength": 13
+                },
+                "gender": {
+                    "type": "String",
+                    "required": "true",
+                    "enum": "['Male', 'Female', 'Other']"
+                },
+                "phone": {
+                    "type": "String",
+                    "required": "true"
+                },
+                "address": {
+                    "type": "String",
+                    "required": "true"
+                },
+                "insurance": {
+                    "type": "String",
+                    "required": "true"
+                },
+                "medicalHistory": {
+                    "type": "String",
+                    "required": "true"
+                },
+                "medications": {
+                    "type": "String",
+                    "required": "true"
+                },
+                "appointments": [
+                    {
+                        "date": {
+                            "type": "Date"
+                        },
+                        "description": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "required": [
+                    "firstName",
+                    "lastName",
+                    "nationalId",
+                    "gender",
+                    "phone",
+                    "address",
+                    "insurance",
+                    "medicalHistory",
+                    "medications",
+                    "appointments"
+                ]
+            }
+        },
+        "Bookings": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "String",
+                    "required": "true"
+                },
+                "patient": {
+                    "type": "Schema.Types.ObjectId",
+                    "ref": "patient",
+                    "required": "true"
+                },
+                "doctor": {
+                    "type": "Schema.Types.ObjectId",
+                    "ref": "doctor",
+                    "required": true
+                },
+                "date": {
+                    "type": "Date",
+                    "required": "true"
+                },
+                "description": {
+                    "type": "String",
+                    "required": "true"
+                },
+                "queuePosition": {
+                    "type": "Number",
+                    "required": "true"
+                },
+                "required": [
+                    "name",
+                    "patient",
+                    "doctor",
+                    "date",
+                    "description",
+                    "queuePosition"
+                ]
+            }
+        },
+         "Doctors": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "String",
+                            "required": "true"
+                        },
+                        "specialty": {
+                            "type": "String",
+                            "required": "true"
+                        },
+                        "role": {
+                            "type": "String",
+                            "enum": "['Surgeon', 'Physician', 'Pediatrician', 'Gynecologist', 'Dentist', 'Other']",
+                            "required": "true"
+                        },
+                        "hospital": {
+                            "type": "Schema.Types.ObjectId",
+                            "ref": "hospital",
+                            "required": "true"
+                        },
+                        "availability": [
+                            {
+                                "dayOfWeek": {
+                                    "type": "String",
+                                    "enum": "['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']",
+                                    "required": "true"
+                                },
+                                "from": {
+                                    "hour": {
+                                        "type": "Number",
+                                        "min": 1,
+                                        "max": 12,
+                                        "required": true
+                                    },
+                                    "minute": {
+                                        "type": "Number",
+                                        "min": 0,
+                                        "max": 59,
+                                        "default": 0
+                                    },
+                                    "period": {
+                                        "type": "String",
+                                        "enum": "['AM', 'PM']",
+                                        "required": "true"
+                                    }
+                                },
+                                "to": {
+                                    "hour": {
+                                        "type": "Number",
+                                        "min": 1,
+                                        "max": 12,
+                                        "required": "true"
+                                    },
+                                    "minute": {
+                                        "type": "Number",
+                                        "min": 0,
+                                        "max": 59,
+                                        "default": 0
+                                    },
+                                    "period": {
+                                        "type": "String",
+                                        "enum": "['AM', 'PM']",
+                                        "required": "true"
+                                    }
+                                }
+                            }
+                        ],
+                        "required": [
+                            "name",
+                            "specialty",
+                            "role",
+                            "hospital",
+                            "availability"
+                        ]
+                    }
+                },
+                    "Hospitals": {
+                        "type": "object",
+                        "properties": {
+                            "nameOfHospital": {
+                                "type": "String",
+                                "required": "true"
+                            },
+                            "patientChoose": {
+                                "type": "Schema.Types.ObjectId",
+                                "ref": "patient",
+                                "required": "true"
+                            },
+                            "location": {
+                                "type": "String",
+                                "required": "true"
+                            },
+                            "doctorsAvailable": {
+                                "type": "Schema.Types.ObjectId",
+                                "ref": "doctor",
+                                "required": "true"
+                            },
+                            "required": [
+                                "nameOfHospital",
+                                "patientChoose",
+                                "location",
+                                "doctorsAvailable"
+                            ]
+                        }
+                    }
+                }
+                }
+            
+        
+        

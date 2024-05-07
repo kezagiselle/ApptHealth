@@ -12,7 +12,6 @@ const doctorSchema = new Schema({
     },
     role:{
         type: String,
-        enum: ['Surgeon', 'Physician', 'Pediatrician', 'Gynecologist', 'Dentist', 'Other'],
         required: true
     },
     hospital: {
@@ -20,23 +19,49 @@ const doctorSchema = new Schema({
         ref: 'hospital',
         required: true
     },
-    availableHours:[{
+    availability: [{
         dayOfWeek: {
             type: String,
             enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
             required: true
         },
         from: {
-            type: Number,
-            min: 0,
-            max: 23,
-            required: true
+            hour: {
+                type: Number,
+                min: 1,
+                max: 12,
+                required: true
+            },
+            minute: {
+                type: Number,
+                min: 0,
+                max: 59,
+                default: 0
+            },
+            period: {
+                type: String,
+                enum: ['AM', 'PM'],
+                required: true
+            }
         },
         to: {
-            type: Number,
-            min: 0,
-            max: 23,
-            required: true
+            hour: {
+                type: Number,
+                min: 1,
+                max: 12,
+                required: true
+            },
+            minute: {
+                type: Number,
+                min: 0,
+                max: 59,
+                default: 0
+            },
+            period: {
+                type: String,
+                enum: ['AM', 'PM'],
+                required: true
+            }
         }
     }]
 });

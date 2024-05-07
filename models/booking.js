@@ -11,8 +11,8 @@ const bookingSchema = new mongoose.Schema({
         required: true
     },
     doctor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Doctor',
+        type: Schema.Types.ObjectId,
+        ref: 'doctor',
         required: true
     },
     date: {
@@ -24,7 +24,7 @@ const bookingSchema = new mongoose.Schema({
         required: true
     },
     queuePosition: {
-        type: String,
+        type: Number,
         required: true
     }
 }, {
